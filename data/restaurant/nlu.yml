@@ -1,0 +1,70 @@
+version: "2.0"
+
+nlu:
+- intent: location.navi
+  examples: |
+    - 导航到 [上海](common.city)
+    - 导航到 [北京](common.city)
+    - 导航到 [公交车站](location.poi)
+    - 我要去 [公园](location.poi)
+    - 导航去 [火车站](location.poi)
+
+- intent: location.query_others
+  examples: |
+    - 中关村附近的餐馆
+    - 三里屯附近的酒吧
+    - 三里屯附近的评分最高的酒吧
+    - 三里屯附近的清吧
+    - 三里屯附近的泰餐
+    - 我想吃四川菜
+  
+- intent: location.query_restaurant
+  examples: |
+    - [中关村](location.poi) 附近的餐馆
+    - [三里屯](location.poi) [评分最高](restaurant.condition) 的[泰餐](restaurant.food_type)
+    - [三里屯](location.poi) 附近距离[最近](restaurant.condition) 的[泰餐](restaurant.food_type)
+    - 离 [三里屯](location.poi) [最近](restaurant.condition) 的[湘菜馆](restaurant.food_type)
+    - [中关村](location.poi) 这边有没有[驴肉火烧](restaurant.food_type) 吃
+    - [西直门](location.poi) 附近 [好吃](restaurant.rating) 的饭店
+    - 我想吃 [四川菜] (restaurant.food_type)
+    - 我想吃 [湖南菜] (restaurant.food_type)
+    - 我想吃 [粤菜] (restaurant.food_type)
+    - 我想吃 [北京菜] (restaurant.food_type)
+    - 我想吃 [苏帮菜] (restaurant.food_type)
+    - 我要吃 [肉夹馍] (restaurant.food_type)
+    - 我想吃 [烧烤] (restaurant.food_type)
+    - 我想吃 [海鲜] (restaurant.food_type)
+    - 我想吃 [饺子] (restaurant.food_type)
+    - 我想吃 [大闸蟹] (restaurant.food_type)
+    - 附近的 [四川菜] (restaurant.food_type)
+    - 附近的 [湖南菜] (restaurant.food_type)
+    - 附近的 [粤菜] (restaurant.food_type)
+    - 附近的 [淮扬菜] (restaurant.food_type)
+    - 附近的 [面馆] (restaurant.food_type)
+    - 附近的 [螺狮粉] (restaurant.food_type)
+    - 附近的 [早点] (restaurant.food_type)
+    - 附近的 [早点铺] (restaurant.food_type)
+    - 随便找一家吃的
+    - 我好饿呀
+    - 找个吃饭的地方
+    - 找个 [环境好](restaurant.condition) 的吃饭的地方
+    - 我想吃饭
+    - 我要吃饭
+
+- lookup: location.poi
+  examples: |
+    - 公交车站
+    - 公园
+    - 火车站
+    - 中金大厦
+    - 月亮湾3号
+    - 美颂花园
+    - 荣御花园
+    - 爱康体检中心
+    - 松鹤楼
+    - 金鸡湖
+    - 加油站
+    - 购物中心
+    - 中关村
+    - 三里屯
+    - 五道口

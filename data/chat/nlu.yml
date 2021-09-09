@@ -1,0 +1,18 @@
+version: "2.0"
+
+nlu:
+- intent: chat.greet
+  examples: |
+    - 你好
+    - 早上好
+    - 吃了吗
+
+- intent: chat.goodbye
+  examples: |
+    - 再见了
+    - 下次见
+    - 拜拜了
+    - 再见啦
+    - 拜拜喽
+    - 886
+    - 88

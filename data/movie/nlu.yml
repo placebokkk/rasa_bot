@@ -1,0 +1,44 @@
+version: "2.0"
+
+nlu:
+- intent: movie.query_rank
+  examples: |
+    - 电影排行榜
+    - 最近流行的电影
+
+- intent: movie.query_actor
+  examples: |
+    - [菊豆](movie.movie_name)是谁主演的
+    - [影武者](movie.movie_name)的主演是谁
+    - [无间道](movie.movie_name)的主演
+    - [神女](movie.movie_name)的主演是哪位
+    - [花样年华](movie.movie_name)有哪些演员
+    - 谁演的[阿飞正传](movie.movie_name)
+    - 谁演的[阿甘正传](movie.movie_name)
+
+- intent: movie.query_director
+  examples: |
+    - [红高粱](movie.movie_name) 是谁导演的
+    - [三峡好人](movie.movie_name)的导演是谁
+    - [小城之春](movie.movie_name)的导演是谁
+    - [神女](movie.movie_name)的导演是哪位
+    - 谁拍的[阿甘正传](movie.movie_name)
+    - 谁导演的[阿甘正传](movie.movie_name)
+
+- intent: movie.query_by_director
+  examples: |
+    - [张艺谋](movie.director_name)拍的电影
+    - [贾樟柯](movie.director_name)的电影
+    - [王家卫](movie.director_name)拍过什么电影
+    - [杨德昌](movie.director_name)拍过哪些电影
+    - [侯孝贤](movie.director_name)导演过什么电影
+    - [王宝强](movie.director_name)导演过电影吗
+
+- intent: movie.query_by_actor
+  examples: |
+    - [赵涛](movie.actor_name)拍过的电影
+    - [余男](movie.actor_name)的电影
+    - [成龙](movie.actor_name)拍过什么电影
+    - [刘嘉玲](movie.actor_name)演过哪些电影
+    - [刘德华](movie.actor_name)演过什么电影
+    - [张震](movie.actor_name)演过电影吗

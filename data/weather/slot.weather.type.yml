@@ -1,0 +1,9 @@
+version: "2.0"
+
+nlu:
+- lookup: weather.type
+  examples: |
+    - 雨
+    - 晴
+    - 雪
+    - 风

@@ -1,0 +1,5 @@
+nlu:
+- lookup: weather.index
+  examples: |
+    - 洗车指数
+    - 下雨指数

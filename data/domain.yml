@@ -1,0 +1,17 @@
+version: "2.0"
+
+intents:
+  - chat.greet
+  - chat.goodbye
+  - location.navi
+  - restaurant.query
+  - weather.query
+  - movie.query_rank
+  - movie.query_actor
+  - movie.query_by_actor
+  - movie.query_director
+  - movie.query_by_director
+
+slots:
+  common.city:
+    type: text

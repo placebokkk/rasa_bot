@@ -1,0 +1,29 @@
+version: "2.0"
+
+nlu:
+- intent: location.navi
+  examples: |
+    - 导航到 [上海](common.city)
+    - 导航到 [北京](common.city)
+    - 导航到 [公交车站](location.poi)
+    - 我要去 [公园](location.poi)
+    - 导航去 [火车站](location.poi)
+
+
+- lookup: location.poi
+  examples: |
+    - 公交车站
+    - 公园
+    - 火车站
+    - 中金大厦
+    - 月亮湾3号
+    - 美颂花园
+    - 荣御花园
+    - 爱康体检中心
+    - 松鹤楼
+    - 金鸡湖
+    - 加油站
+    - 购物中心
+    - 中关村
+    - 三里屯
+    - 五道口

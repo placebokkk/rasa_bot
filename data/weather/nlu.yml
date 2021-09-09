@@ -1,0 +1,46 @@
+version: "2.0"
+
+nlu:
+- intent: weather.query
+  examples: |
+    - [今天](common.date)的天气 [上海](common.city)
+    - [北京](common.city) [明天](common.date) 天气
+    - [北京](common.city) [八月三十号](common.date) 的天气
+    - [今天](common.date) [上海](common.city) 下 [雨](weather.type) 吗
+    - [明天](common.date) [苏州](common.city) 还下 [雨](weather.type)吗
+    - [昨天](common.date) 的天气 [成都](common.city)
+    - [承德](common.city) [明天](common.date) 天气
+    - [广安](common.city) 的天气
+    - [今天](common.date) [湖州](common.city) 有 [台风](weather.type)吗
+    - [明天](common.date) [无锡](common.city) [晴](weather.type) 天吗
+    - [徐州](common.city) 天气
+    - [今天](common.date) [南京](common.city) 天气
+    - [今天](common.date) [徐州](common.city) 天气
+    - [今天](common.date) [南宁](common.city) 天气
+    - [今天](common.date) [汕头](common.city) 天气
+    - [今天](common.date) [深圳](common.city) 天气
+    - [今天](common.date) [抚顺](common.city) 的天气
+    - [今天](common.date) [大连](common.city) 的天气
+    - [今天](common.date) [营口](common.city) 的天气
+    - [今天](common.date) [通辽](common.city) 的天气
+    - [今天](common.date) [廊坊](common.city) 的天气
+    - 查一下 [上海](common.city) 天气
+    - 查一下 [苏州](common.city) 天气
+    - 查一下 [无锡](common.city) 天气
+    - 查一下 [杭州](common.city) 天气
+    - 查一下 [宁波](common.city) 天气
+    - 查一下 [舟山](common.city) 天气
+    - 查一下 [慈溪](common.city) 天气
+    - 查一下 [昆山](common.city) 天气
+    - 查一下 [高邮](common.city) 的天气
+    - 查一下 [句容](common.city) 的天气
+    - 查一下 [江都](common.city) 的天气
+    - 告诉我 [姜堰](common.city) 的天气
+    - 告诉我 [扬中](common.city) 的天气
+    - 告诉我 [丹阳](common.city) 的天气
+    - [上海](common.city) 天气
+    - [绥化](common.city) 天气
+    - [今天](common.date) [洗车指数](weather.index)
+    - [明天](common.date) 的 [洗车指数](weather.index)
+    - [今天](common.date) [运动指数](weather.index)
+    - [明天](common.date) 的 [出行指数](weather.index)

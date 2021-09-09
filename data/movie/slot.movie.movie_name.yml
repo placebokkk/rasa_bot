@@ -1,0 +1,15 @@
+version: "2.0"
+
+nlu:
+- lookup: movie.actor_name
+  examples: |
+    - 邓超
+    - 孙俪
+    - 郑恺
+    - 王千源
+    - 胡军
+    - 关晓彤
+    - 胡歌
+    - 李易峰
+    - 周星驰
+    - 张震
