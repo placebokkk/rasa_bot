@@ -1,4 +1,4 @@
-# rasa_bot
+# Rasa Bot
 
 A demo bot using rasa
 
@@ -21,12 +21,45 @@ rasa shell nlu -m models/nlu.model.tar.gz
 ./run_server.sh
 ```
 
-## Client 
+## Client Request
 ```
 curl localhost:5005/model/parse -d '{"text":"明天张家港的出行指数"}'
 ```
 
+
+## Data
+
+为了分别构建不同domian的数据，可以intent example, lookup table, regex, synonym map.分开写。但在训练时，data下的所有.yml文件(包括子目录)都会被rasa merge为一个文件。
+
+
+```
+# tree
+data
+├── chat
+│   └── nlu.yml
+├── common
+│   ├── slot.common.city.yml
+│   └── slot.common.date.yml
+├── domain.yml
+├── location
+│   └── nlu.yml
+├── movie
+│   ├── nlu.yml
+│   └── slot.movie.movie_name.yml
+├── restaurant
+│   └── nlu.yml
+└── weather
+    ├── nlu.yml
+    ├── slot.weather.index.yml
+    └── slot.weather.type.yml
+```
+
+
 ## Support Intent
+
+Rasa没有多domain的概念，所有intent在同一级进行ranking, 本demo通过`domain.intent`来命名intent。
+
+
 ```
   - chat.greet 你好
   - chat.goodbye 再见
@@ -145,6 +178,30 @@ curl localhost:5005/model/parse -d '{"text":"明天张家港的出行指数"}'
     ]
 }
 ```
-## Issue
 
-Rasa没有多domain的概念，所有intent在同一级进行ranking, 本demo通过`domain.intent`来命名intent
+## Config
+* 使用JiebaTokenizer
+* 对于中文，RegexFeaturizer和RegexEntityExtractor均需要使用`use_word_boundaries: False`，否则生成的正则会在`entity`前后加上`\b`,变为`(\bentity1\b|\bentity2\b)`
+* RegexFeaturizer仅根据Lookuptable/Regex提取feature，但是不保证该feature一定能将对应的部分标注为对应的Regex Entity Name，需要提供足够的example。
+* RegexEntityExtractor直接根据Regex/LookupTable进行正则匹配，提取特征
+* 第二个CountVectorsFeaturizer在中文里是否需要待确认？
+
+```
+language: zh
+
+pipeline:
+    - name: JiebaTokenizer
+    - name: RegexFeaturizer 
+      use_word_boundaries: False
+    - name: CountVectorsFeaturizer
+    - name: CountVectorsFeaturizer
+      analyzer: "char_wb"
+      min_ngram: 1
+      max_ngram: 4
+    - name: DIETClassifier
+      epochs: 100
+    - name: RegexEntityExtractor
+      use_word_boundaries: False
+    - name: EntitySynonymMapper
+```
+
