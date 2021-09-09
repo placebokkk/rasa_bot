@@ -54,6 +54,15 @@ data
     └── slot.weather.type.yml
 ```
 
+**关于语义Schema的设计**:
+
+在nlu的schema的设计上，查找饭店这个意图，可以放到location领域(或者叫skill技能)下面，location.query_restaurant意图, 也可以放在单独的restaurant领域下面，叫做restaurant.query意图。
+哪一种方法好，可能要根据具体的应用场景。比如
+
+* 查到了之后，用户说导航到这里。 对于前者，不涉及domain切换，对于后者，涉及domain切换。
+
+* 查到了之后，用户说，这家店的特色菜有什么。对于前者，location下需要放更多意图。对于后者，restaurant是专门用于处理餐厅相关domain，更自然。
+
 
 ## Support Intent
 
