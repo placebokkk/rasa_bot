@@ -2,32 +2,53 @@
 
 A demo bot using rasa
 
-安装rasa或者直接使用rasa提供的docker.
+## 环境配置
+**方法1**
 
+安装rasa
+```
+conda create -n rasa python=3.7 
+conda activate rasa
+pip install rasa
+```
+可以使用rasa的cli命令进行训练，测试，部署.
 
-## Train NLU model
+**方法2**
+直接使用rasa提供的docker镜像rasa/rasa:latest-full, 其中安装好了环境，并且把入口设为'rasa'指令，可以直接使用.
+```
+docker run -v $(pwd):/app rasa/rasa:latest-full train nlu -d data --fixed-model-name nlu.model
+```
+
+注意，docker的方式不能用于本地cli里测试nlu，需要用rasa指令。
+```
+rasa shell nlu -m models/nlu.model.tar.gz
+```
+
+[Rasa nlu pipeline 官方介绍](https://rasa.com/blog/intents-entities-understanding-the-rasa-nlu-pipeline/)
+
+## 训练 NLU 模型
 ```
 ./run_train.sh
 # rasa train nlu -d data --fixed-model-name nlu.model
 ```
 
-## Test model in shell
+## 在shell中测试NLU
 ```
 rasa shell nlu -m models/nlu.model.tar.gz
 ```
 
-## Host NLU http server via Docker
+## 通过Docker部署NLU http 服务
 ```
 ./run_server.sh
 ```
 
-## Client Request
+## 客户端请求
 ```
 curl localhost:5005/model/parse -d '{"text":"明天张家港的出行指数"}'
 ```
 
 
-## Data
+## 数据格式
 
 为了分别构建不同domian的数据，可以intent example, lookup table, regex, synonym map.分开写。但在训练时，data下的所有.yml文件(包括子目录)都会被rasa merge为一个文件。
 
@@ -54,7 +75,7 @@ data
     └── slot.weather.type.yml
 ```
 
-**关于语义Schema的设计**:
+**语义Schema的设计**:
 
 在nlu的schema的设计上，查找饭店这个意图，可以放到location领域(或者叫skill技能)下面，location.query_restaurant意图, 也可以放在单独的restaurant领域下面，叫做restaurant.query意图。
 哪一种方法好，可能要根据具体的应用场景。比如
@@ -64,7 +85,7 @@ data
 * 查到了之后，用户说，这家店的特色菜有什么。对于前者，location下需要放更多意图。对于后者，restaurant是专门用于处理餐厅相关domain，更自然。
 
 
-## Support Intent
+## 支持的Intent
 
 Rasa没有多domain的概念，所有intent在同一级进行ranking, 本demo通过`domain.intent`来命名intent。
 
@@ -82,7 +103,7 @@ Rasa没有多domain的概念，所有intent在同一级进行ranking, 本demo通
   - movie.query_by_director 张艺谋演过的电影
 ```
 
-## Response
+## 响应格式
 
 一些entity同时被DIETClassifier和RegexEntityExtractor提取两次。
 ```
@@ -188,7 +209,7 @@ Rasa没有多domain的概念，所有intent在同一级进行ranking, 本demo通
 }
 ```
 
-## Config
+## NLU pipeline配置文件 config.yml
 * 使用JiebaTokenizer
 * 对于中文，RegexFeaturizer和RegexEntityExtractor均需要使用`use_word_boundaries: False`，否则生成的正则会在`entity`前后加上`\b`,变为`(\bentity1\b|\bentity2\b)`
 * RegexFeaturizer仅根据Lookuptable/Regex提取feature，但是不保证该feature一定能将对应的部分标注为对应的Regex Entity Name，需要提供足够的example。
